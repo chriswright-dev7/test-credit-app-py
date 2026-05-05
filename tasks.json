@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "tasks": [
+    {
+      "label": "CustInfo",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe","args": ["test-service-custinfo/test-service-custinfo.py"]
+    },
+    {
+      "label": "CreditScan",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe","args": ["test-service-creditscan/test-service-creditscan.py"]
+    },
+    {
+      "label": "FraudRisk",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe","args": ["test-service-fraudrisk/test-service-fraudrisk.py"]
+    },
+    {
+      "label": "SignIn",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe","args": ["test-service-signin/test-service-signin.py"]
+    }
+  ]
+}

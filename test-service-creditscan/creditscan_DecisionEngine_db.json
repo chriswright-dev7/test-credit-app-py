@@ -1,0 +1,101 @@
+{
+    "Entities": [
+{
+    "custId": "0034567890",
+    "customerInfo": {
+    "customerFirstName": "Jack",
+    "customerMiddleInitial": "Q",
+    "customerLastName": "Doe",
+    "customerDOB": "04/14/1989",
+    "customerSSN": "123456789",
+    "customerEmail": "jack@abc.com",
+    "customerAddress": "555 main St.",
+    "customerCity": "Gresham",
+    "customerState": "OR",
+    "customerZip": "97030",
+    "customerPhoneNumber": "503-555-1234"
+  },
+  "accountInfo": [ 
+      {
+      "accountName": "ABC Bank",
+      "accountBalance": 1000.00,
+      "accountType": "Checking",
+      "accountNumber": "1234567890"
+      },{
+      "accountName": "USA Bank",
+      "accountBalance": 9000.00,
+      "accountType": "Checking",
+      "accountNumber": "1234567890"
+      },{
+      "accountName": "XYZ Credit Union",
+      "accountBalance": 2000.00,
+      "accountType": "Savings",
+      "accountNumber": "0987654321"
+    }
+    ],
+    "collectionInfo": [
+      "derogatory_summary", {
+      "collections": 0,
+      "bankruptcies": 0,
+      "late_payments_30_days": 1
+      },
+      {
+        "collectorName": "Impound Co",
+        "collectorAcctNum": "0345737234",
+        "collectorAcctType": "UtilityBill",
+        "collectorOriginCreditor": "Natural Gas Co"
+      }
+    ]
+  },
+  {
+    "custId": "0034567891",
+    "customerInfo": {
+      "customerFirstName": "Jane",
+      "customerMiddleInitial": "M",
+      "customerLastName": "Conner",
+      "customerDOB": "06/15/1990",
+      "customerSSN": "987654321",
+      "customerEmail": "jane@abc.com",
+      "customerAddress": "1540 SE 15th Ct.",
+      "customerCity": "Gresham",
+      "customerState": "OR",
+      "customerZip": "97030",
+      "customerPhoneNumber": "503-222-5678"
+    },
+    "accountInfo": [
+      {
+        "accountName": "Mucky Bank",
+        "accountBalance": 1000.00,
+        "accountType": "Checking",
+        "accountNumber": "1234567890"
+      },
+      {
+        "accountName": "USA Bank",
+        "accountBalance": 10000.00,
+        "accountType": "Checking",
+        "accountNumber": "1234567890"
+      },
+      {
+        "accountName": "Overhaul Credit Union",
+        "accountBalance": 1500.00,
+        "accountType": "Savings",
+        "accountNumber": "09387644321"
+      }
+    ],
+    "collectionInfo": [
+      "derogatory_summary",
+      {
+       	"collections": 0,
+       	"bankruptcies": 0,
+       	"late_payments_30_days": 1
+      },
+      {
+       	"collectorName": "Impound Co",
+       	"collectorAcctNum": "0345737234",
+       	"collectorAcctType": "UtilityBill",
+       	"collectorOriginCreditor": "Natural Gas Co"
+      }
+    ]
+  }
+]
+}

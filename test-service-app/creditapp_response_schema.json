@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "app": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "type": "object",
+          "properties": {
+            "applicationId": { "type": "string" },
+            "sessionId": { "type": "string", "format": "uuid" }
+          },
+          "required": ["applicationId", "sessionId"]
+        },
+        "custInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "CustomerNumber": { "type": "string" },
+              "username": { "type": "string" },
+              "password": { "type": "string" },
+              "firstName": { "type": "string" },
+              "middleInitial": { "type": "string", "maxLength": 1 },
+              "lastName": { "type": "string" },
+              "DOB": { "type": "string", "pattern": "^(0[1-9]|1[0-2])/([0-2][0-9]|3[01])/\\d{4}$" },
+              "SSN": { "type": "string", "pattern": "^\\d{9}$" },
+              "email": { "type": "string", "format": "email" },
+              "address": { "type": "string" },
+              "city": { "type": "string" },
+              "state": { "type": "string", "minLength": 2, "maxLength": 2 },
+              "zip": { "type": "string", "pattern": "^\\d{5}$" },
+              "phoneNumber": { "type": "string" },
+              "applicationId": { "type": "string" },
+              "sessionId": { "type": "string", "format": "uuid" }
+            },
+            "required": [
+              "CustomerNumber",
+              "username",
+              "firstName",
+              "lastName",
+              "DOB",
+              "SSN",
+              "email"
+            ]
+          }
+        },
+        "creditInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "accountInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "accountName": { "type": "string" },
+                    "accountBalance": { "type": "number" },
+                    "accountType": { "type": "string" },
+                    "accountNumber": { "type": "string" }
+                  },
+                  "required": ["accountName", "accountBalance"]
+                }
+              },
+              "collectionInfo": {
+                "type": "object",
+                "properties": {
+                  "summary": {
+                    "type": "object",
+                    "properties": {
+                      "collections": { "type": "integer" },
+                      "bankruptcies": { "type": "integer" },
+                      "late_payments_30_days": { "type": "integer" }
+                    }
+                  },
+                  "details": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "collectorName": { "type": "string" },
+                        "collectorAcctNum": { "type": "string" },
+                        "collectorAcctType": { "type": "string" },
+                        "collectorOriginCreditor": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "fraudInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "applicationId": { "type": "string" },
+              "sessionId": { "type": "string", "format": "uuid" },
+              "status": { "type": "string" },
+              "caseId": { "type": "string" },
+              "onboardingFlag": { "type": "string" },
+              "riskScore": { "type": "string" },
+              "description": { "type": "string" },
+              "riskAssessmentCategory": { "type": "string" }
+            },
+            "required": ["applicationId", "sessionId", "status"]
+          }
+        }
+      },
+      "required": ["application", "custInfo", "creditInfo", "fraudInfo"]
+    }
+  },
+  "required": ["app"]
+}

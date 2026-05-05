@@ -1,0 +1,18 @@
+[
+  {
+    "CustomerNumber": "0000000001",
+    "username": "jdoe12",
+    "password": "1111",
+    "firstName": "Jack",
+    "middleInitial": "Q",
+    "lastName": "Doe",
+    "DOB": "04/14/1989",
+    "SSN": "123456789",
+    "email": "jack@abc.com",
+    "address": "555 main St.",
+    "city": "Gresham",
+    "state": "OR",
+    "zip": "97030",
+    "phoneNumber": "5035551234"
+  }
+]

@@ -1,0 +1,77 @@
+{"app": [
+  {
+    "applicationId": "2026021000002",
+    "sessionId": "77a0ad74-a54b-99e3-b1bc-1d928ii01a44"
+  },
+  "CustInfo", [
+  {
+    "CustomerNumber": "0000000001",
+    "username": "jdoe12",
+    "password": "1111",
+    "firstName": "Jack",
+    "middleInitial": "Q",
+    "lastName": "Doe",
+    "DOB": "04/14/1989",
+    "SSN": "123456789",
+    "email": "jack@abc.com",
+    "address": "555 main St.",
+    "city": "Gresham",
+    "state": "OR",
+    "zip": "97030",
+    "phoneNumber": "503-555-1234",
+    "applicationId": "2026021000002",
+    "sessionId": "77a0ad74-a54b-99e3-b1bc-1d928ii01a44"
+  }
+  ],
+  "creditInfo", [
+    {"accountInfo": [ 
+      {
+      "accountName": "ABC Bank",
+      "accountBalance": 1000.00,
+      "accountType": "Checking",
+      "accountNumber": "1234567890"
+      },{
+      "accountName": "USA Bank",
+      "accountBalance": 9000.00,
+      "accountType": "Checking",
+      "accountNumber": "1234567890"
+      },{
+      "accountName": "XYZ Credit Union",
+      "accountBalance": 2000.00,
+      "accountType": "Savings",
+      "accountNumber": "0987654321"
+    }
+    ],
+    "collectionInfo": [
+      "derogatory_summary", {
+      "collections": 0,
+      "bankruptcies": 0,
+      "late_payments_30_days": 1
+      },
+      {
+        "collectorName": "Impound Co",
+        "collectorAcctNum": "0345737234",
+        "collectorAcctType": "UtilityBill",
+        "collectorOriginCreditor": "Natural Gas Co"
+      }
+    ]
+  },
+  {
+    "applicationId": "2026021000002",
+    "sessionId": "77a0ad74-a54b-99e3-b1bc-1d928ii01a44"
+  }
+  ],
+  "fraudinfo", [
+      {
+        "applicationId": "2026021000002",
+        "sessionId": "77a0ad74-a54b-99e3-b1bc-1d928ii01a44",
+        "Status": "SUCCESSFUL",
+        "Case ID": "CA756",
+        "Onboarding Flag": "N",
+        "RiskScore": "9.1",
+        "Description": "NO FRAUD DETECTED",
+        "RiskAssessmentCategory": "High"
+      }
+    ]
+  ]
+}

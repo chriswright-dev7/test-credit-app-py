@@ -12,10 +12,20 @@ CREDITSCAN_KEY = "creditscan-secret"
 
 load_dotenv()
 app = Flask(__name__)
+import settings
+HOST = settings.CONFIG["HOST"]
+cardapp_port = settings.CONFIG["CARDAPP_PORT"]
+signin_port = settings.CONFIG["SIGNIN_PORT"]
+custinfo_port = settings.CONFIG["CUSTINFO_PORT"]
+creditscan_port = settings.CONFIG["CREDITSCAN_PORT"]
+fraudrisk_port = settings.CONFIG["FRAUDRISK_PORT"]
+appid_port = settings.CONFIG["APPID_PORT"]
 
-HOST = "localhost"
-PORT = 5003
-appid_port = 5009
+CREDITSCAN_KEY = settings.CONFIG["CREDITSCAN_KEY"]
+FRAUDRISK_KEY = settings.CONFIG["FRAUDRISK_KEY"]
+APPID_KEY = settings.CONFIG["APPID_KEY"]
+CUSTINFO_KEY = settings.CONFIG["CUSTINFO_KEY"]
+SIGNIN_KEY = settings.CONFIG["SIGNIN_KEY"]
 
 # -----------------------------
 # Load schema at startup safely
@@ -166,5 +176,5 @@ def creditscan():
 # Run Server
 # -----------------------------
 if __name__ == "__main__":
-    app.run(host=HOST, port=PORT, debug=True)
+    app.run(host=HOST, port=creditscan_port, debug=True)
 

@@ -37,45 +37,85 @@
     userPopup.style.display = 'none';
   });
 
-  signInBtn.addEventListener('click', function() {
-    const username = document.getElementById('popupUsername').value;
-    const password = document.getElementById('popupPassword').value;
-    console.log('Attempting sign in with:', { username, password });
-    popupStatus.textContent = 'Signing in...';
-    fetch('http://localhost:5001/signin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success && data.user) {
-          popupStatus.style.color = 'green';
-          popupStatus.textContent = 'Sign in successful!';
-          // Autofill form fields
-          const u = data.user;
-          if(document.getElementById('firstName')) document.getElementById('firstName').value = u.firstName || '';
-          if(document.getElementById('middleInitial')) document.getElementById('middleInitial').value = u.middleInitial || '';
-          if(document.getElementById('lastName')) document.getElementById('lastName').value = u.lastName || '';
-          if(document.getElementById('SSN')) document.getElementById('SSN').value = u.SSN || '';
-          if(document.getElementById('DOB')) document.getElementById('DOB').value = formatDate(u.DOB) || '';
-          if(document.getElementById('email')) document.getElementById('email').value = u.email || '';
-          if(document.getElementById('phoneNumber')) document.getElementById('phoneNumber').value = u.phoneNumber || '';
-          if(document.getElementById('address')) document.getElementById('address').value = u.address || '';
-          if(document.getElementById('city')) document.getElementById('city').value = u.city || '';
-          if(document.getElementById('state')) document.getElementById('state').value = u.state || '';
-          if(document.getElementById('zip')) document.getElementById('zip').value = u.zip || '';
-          if(document.getElementById('annualIncome')) document.getElementById('annualIncome').value = u.annualIncome || '';
-          setTimeout(() => { userPopup.style.display = 'none'; }, 1000);
-        } else {
-          popupStatus.style.color = 'red';
-          popupStatus.textContent = data.message || 'Sign in failed.';
+  signInBtn.addEventListener('click', async function () {
+  const username = document.getElementById('popupUsername').value;
+  const password = document.getElementById('popupPassword').value;
+
+  popupStatus.textContent = 'Signing in...';
+
+    try {
+      const res = await fetch("/config");
+      const CONFIG = await res.json();
+
+      console.log('CONFIG loaded:', CONFIG);
+
+      const response = await fetch(
+        `http://${CONFIG.HOST}:${CONFIG.SIGNIN_PORT}/signin`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
         }
-      })
-      .catch(() => {
+      );
+
+      const data = await response.json();
+
+      if (data.success && data.user) {
+        popupStatus.style.color = 'green';
+        popupStatus.textContent = 'Sign in successful!';
+
+        const u = data.user;
+
+        if (document.getElementById('firstName'))
+          document.getElementById('firstName').value = u.firstName || '';
+
+        if (document.getElementById('middleInitial'))
+          document.getElementById('middleInitial').value = u.middleInitial || '';
+
+        if (document.getElementById('lastName'))
+          document.getElementById('lastName').value = u.lastName || '';
+
+        if (document.getElementById('SSN'))
+          document.getElementById('SSN').value = u.SSN || '';
+
+        if (document.getElementById('DOB'))
+          document.getElementById('DOB').value = formatDate(u.DOB) || '';
+
+        if (document.getElementById('email'))
+          document.getElementById('email').value = u.email || '';
+
+        if (document.getElementById('phoneNumber'))
+          document.getElementById('phoneNumber').value = u.phoneNumber || '';
+
+        if (document.getElementById('address'))
+          document.getElementById('address').value = u.address || '';
+
+        if (document.getElementById('city'))
+          document.getElementById('city').value = u.city || '';
+
+        if (document.getElementById('state'))
+          document.getElementById('state').value = u.state || '';
+
+        if (document.getElementById('zip'))
+          document.getElementById('zip').value = u.zip || '';
+
+        if (document.getElementById('annualIncome'))
+          document.getElementById('annualIncome').value = u.annualIncome || '';
+
+        setTimeout(() => {
+          userPopup.style.display = 'none';
+        }, 1000);
+
+      } else {
         popupStatus.style.color = 'red';
-        popupStatus.textContent = 'Error signing in.';
-      });
+        popupStatus.textContent = data.message || 'Sign in failed.';
+      }
+
+    } catch (err) {
+      popupStatus.style.color = 'red';
+      popupStatus.textContent = 'Error signing in.';
+      console.error(err);
+    }
   });
 
   // Helper function to format date for input[type="date"]
@@ -121,84 +161,3 @@
     }
   });
 })();
-
-//  // function to handle form submission result display
-//   function renderResult(success, message) {
-//   const app = document.getElementById("app");
-//   // app.style.opacity = 0;
-//   // setTimeout(() => app.style.opacity = 1, 50);
-
-//   app.innerHTML = ""; // clear everything
-
-//   const box = document.createElement("div");
-//   box.style.textAlign = "center";
-//   box.style.marginTop = "100px";
-
-//   const title = document.createElement("h1");
-//   title.textContent = success
-//     ? "✅ Transmission Successful"
-//     : "❌ Transmission Failed";
-
-//   title.style.color = success ? "green" : "red";
-
-//   const msg = document.createElement("p");
-//   msg.textContent = message || "";
-
-//   // const btn = document.createElement("button");
-//   // btn.textContent = "Return to Form";
-//   // btn.onclick = () => window.location.reload();
-
-//   box.appendChild(title);
-//   box.appendChild(msg);
-//   box.appendChild(btn);
-
-//   app.appendChild(box);
-// }
-
-
-//   document.addEventListener("DOMContentLoaded", function () {
-//     document.getElementById('secureForm').addEventListener('submit', function (e) {
-//     e.preventDefault();
-
-//     document.getElementById("status").textContent = "Transmitting securely...";
-
-//     const form = document.getElementById("secureForm");
-
-//     form.addEventListener("submit", () => {
-//     const elements = form.querySelectorAll("input, select, button, textarea");
-
-//       elements.forEach(el => {
-//         el.disabled = true;
-//       });
-
-//       const submitBtn = form.querySelector('button[type="submit"]');
-//       if (submitBtn) {
-//         submitBtn.textContent = "Submitting...";
-//       }
-//     });
-    
-//     fetch('http://localhost:5005/app', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
-//     })
-//     .then(res => res.json())
-//     .then(data => {
-//       renderResult(data.success, data.message);
-
-//       return fetch('http://localhost:5005/app', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(data)
-//       });
-//     })
-//     .then(res => res.json())
-//     .then(appResponse => {
-//       console.log("App service response:", appResponse);
-//     })
-//     .catch(() => {
-//       renderResult(false, "Network or server error");
-//     });
-//   });
-// });
-

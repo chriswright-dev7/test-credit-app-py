@@ -8,6 +8,7 @@ import datetime  # For timestamps and date formatting
 import random    # For generating random numbers
 import json      # For reading/writing JSON files
 import os        # For file path operations
+import sys       # For adding paths to the Python path
 from flask import Flask, jsonify  # Flask for microservice
 import tempfile
 import shutil
@@ -15,8 +16,21 @@ import shutil
 load_dotenv()
 # Initialize Flask app
 app = Flask(__name__)
-host = 'localhost'
-port = 5009
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import settings
+HOST = settings.CONFIG["HOST"]
+cardapp_port = settings.CONFIG["CARDAPP_PORT"]
+signin_port = settings.CONFIG["SIGNIN_PORT"]
+custinfo_port = settings.CONFIG["CUSTINFO_PORT"]
+creditscan_port = settings.CONFIG["CREDITSCAN_PORT"]
+fraudrisk_port = settings.CONFIG["FRAUDRISK_PORT"]
+appid_port = settings.CONFIG["APPID_PORT"]
+
+CREDITSCAN_KEY = settings.CONFIG["CREDITSCAN_KEY"]
+FRAUDRISK_KEY = settings.CONFIG["FRAUDRISK_KEY"]
+APPID_KEY = settings.CONFIG["APPID_KEY"]
+CUSTINFO_KEY = settings.CONFIG["CUSTINFO_KEY"]
+SIGNIN_KEY = settings.CONFIG["SIGNIN_KEY"]
 
 # Generate a unique 14-digit appId in yyyymmddssnnnn format
 # Checks against existing_ids to avoid duplicates
@@ -102,4 +116,4 @@ def get_app_id():
 
 # Run the Flask app
 if __name__ == "__main__":
-    app.run(host=host, port=port)
+    app.run(host=HOST, port=appid_port)

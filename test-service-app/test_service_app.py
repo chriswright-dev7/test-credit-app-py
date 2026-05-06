@@ -2,21 +2,50 @@ from dotenv import load_dotenv
 from urllib import request as urllib_request
 from urllib.error import HTTPError
 from flask import Flask, json, request, jsonify, send_from_directory, redirect, url_for
-import os, uuid
+import os, uuid, sys
 from flask_cors import CORS
 import datetime
 
-load_dotenv()
+
 app = Flask(__name__, static_folder='public')
-host = 'localhost'
-cardapp_port = 5005
-creditscan_port = 5003
-fraudrisk_port = 5004
+# host = 'localhost'
+# cardapp_port = 5005
+# creditscan_port = 5003
+# fraudrisk_port = 5004
+# Build path to ../config.env
+# base_dir = os.path.dirname(os.path.abspath(__file__))
+# env_path = os.path.join(base_dir, 'config.env')
+# load_dotenv(dotenv_path=env_path)
+# import config.settings as settings
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import settings
+HOST = settings.CONFIG["HOST"]
+cardapp_port = settings.CONFIG["CARDAPP_PORT"]
+signin_port = settings.CONFIG["SIGNIN_PORT"]
+custinfo_port = settings.CONFIG["CUSTINFO_PORT"]
+creditscan_port = settings.CONFIG["CREDITSCAN_PORT"]
+fraudrisk_port = settings.CONFIG["FRAUDRISK_PORT"]
+appid_port = settings.CONFIG["APPID_PORT"]
+
+CREDITSCAN_KEY = settings.CONFIG["CREDITSCAN_KEY"]
+FRAUDRISK_KEY = settings.CONFIG["FRAUDRISK_KEY"]
+APPID_KEY = settings.CONFIG["APPID_KEY"]
+CUSTINFO_KEY = settings.CONFIG["CUSTINFO_KEY"]
+SIGNIN_KEY = settings.CONFIG["SIGNIN_KEY"]
+
 appId = None
 decisionCode = None
 sessionId = str(uuid.uuid4())
 
-CORS(app, origins=[f"http://{host}:{cardapp_port}"])
+CORS(app, origins=[f"http://{HOST}:{cardapp_port}"])
+@app.route("/config")
+def config():
+    return jsonify({
+        "HOST": HOST,
+        "SIGNIN_PORT": signin_port
+    })
+
 # -------------------------
 # UI route (GET /app)
 # -------------------------
@@ -33,7 +62,7 @@ def serve_index():
 def api_call_creditscan(payload):
     try:
         req = urllib_request.Request(
-            f"http://{host}:{creditscan_port}/creditscan",
+            f"http://{HOST}:{creditscan_port}/creditscan",
             data=json.dumps(payload).encode('utf-8'),
             headers=
             {
@@ -57,7 +86,7 @@ def api_call_creditscan(payload):
 def api_call_fraudrisk(payload):
     try:
         req = urllib_request.Request(
-            f"http://{host}:{fraudrisk_port}/fraudrisk",
+            f"http://{HOST}:{fraudrisk_port}/fraudrisk",
             data=json.dumps(payload).encode('utf-8'),
             headers=
             {
@@ -239,4 +268,4 @@ def result():
 if __name__ == '__main__':
     # port = int(os.environ.get('PORT', 5005))
     # host = os.environ.get('HOST', 'localhost')
-    app.run(host=host, port=cardapp_port, debug=True)
+    app.run(host=HOST, port=cardapp_port, debug=True)

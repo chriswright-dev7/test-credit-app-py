@@ -189,6 +189,101 @@
         },
         "timestamp": "2026-05-05T12:42:35.744359"
       }
+    },
+    {
+      "app": {
+        "appDecisionCode": "AP",
+        "appDecisionResponse": [
+          {
+            "accountInfo": [
+              {
+                "accountBalance": 1000.0,
+                "accountName": "ABC Bank",
+                "accountNumber": "1234567890",
+                "accountType": "Checking"
+              },
+              {
+                "accountBalance": 9000.0,
+                "accountName": "USA Bank",
+                "accountNumber": "1234567890",
+                "accountType": "Checking"
+              },
+              {
+                "accountBalance": 2000.0,
+                "accountName": "XYZ Credit Union",
+                "accountNumber": "0987654321",
+                "accountType": "Savings"
+              }
+            ],
+            "appId": "20260506352825",
+            "collectionInfo": [
+              "derogatory_summary",
+              {
+                "bankruptcies": 0,
+                "collections": 0,
+                "late_payments_30_days": 1
+              },
+              {
+                "collectorAcctNum": "0345737234",
+                "collectorAcctType": "UtilityBill",
+                "collectorName": "Impound Co",
+                "collectorOriginCreditor": "Natural Gas Co"
+              }
+            ],
+            "custId": "0034567890",
+            "customerInfo": {
+              "customerAddress": "555 main St.",
+              "customerCity": "Gresham",
+              "customerDOB": "04/14/1989",
+              "customerEmail": "jack@abc.com",
+              "customerFirstName": "Jack",
+              "customerLastName": "Doe",
+              "customerMiddleInitial": "Q",
+              "customerPhoneNumber": "503-555-1234",
+              "customerSSN": "123456789",
+              "customerState": "OR",
+              "customerZip": "97030"
+            }
+          }
+        ],
+        "appId": "20260506352825",
+        "contextId": "097a8af9-8e1f-4ee3-880a-ea4fb16de597",
+        "creditInfo": {
+          "DOB": "04/14/1989",
+          "SSN": "123456789",
+          "address": "555 main St.",
+          "annualIncome": "100000",
+          "city": "Gresham",
+          "email": "jack@abc.com",
+          "firstName": "Jack",
+          "lastName": "Doe",
+          "middleInitial": "Q",
+          "mothersMaidenName": "smithy",
+          "phoneNumber": "5035551234",
+          "state": "OR",
+          "zip": "97030"
+        },
+        "custInfo": {
+          "DOB": "04/14/1989",
+          "SSN": "123456789",
+          "address": "555 main St.",
+          "annualIncome": "100000",
+          "city": "Gresham",
+          "email": "jack@abc.com",
+          "firstName": "Jack",
+          "lastName": "Doe",
+          "middleInitial": "Q",
+          "mothersMaidenName": "smithy",
+          "phoneNumber": "5035551234",
+          "state": "OR",
+          "zip": "97030"
+        },
+        "fraudInfo": {
+          "Description": "NO FRAUD DETECTED",
+          "RiskScore": "9.1"
+        },
+        "timestamp": "2026-05-06T14:30:37.191043"
+      }
     }
   ]
 }

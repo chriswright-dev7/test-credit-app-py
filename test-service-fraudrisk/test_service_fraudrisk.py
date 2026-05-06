@@ -9,12 +9,24 @@ from jsonschema import validate, ValidationError
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from auth import require_api_key
 
-FRAUDRISK_KEY = "fraudrisk-secret"
+# FRAUDRISK_KEY = "fraudrisk-secret"
 
 load_dotenv()
 app = Flask(__name__)
-host = 'localhost'
-port = 5004
+import settings
+HOST = settings.CONFIG["HOST"]
+cardapp_port = settings.CONFIG["CARDAPP_PORT"]
+signin_port = settings.CONFIG["SIGNIN_PORT"]
+custinfo_port = settings.CONFIG["CUSTINFO_PORT"]
+creditscan_port = settings.CONFIG["CREDITSCAN_PORT"]
+fraudrisk_port = settings.CONFIG["FRAUDRISK_PORT"]
+appid_port = settings.CONFIG["APPID_PORT"]
+
+CREDITSCAN_KEY = settings.CONFIG["CREDITSCAN_KEY"]
+FRAUDRISK_KEY = settings.CONFIG["FRAUDRISK_KEY"]
+APPID_KEY = settings.CONFIG["APPID_KEY"]
+CUSTINFO_KEY = settings.CONFIG["CUSTINFO_KEY"]
+SIGNIN_KEY = settings.CONFIG["SIGNIN_KEY"]
 
 # -----------------------------
 # Load schema at startup safely
@@ -62,14 +74,6 @@ def getFraudRisk():
     if error:
         return jsonify({"error": error}), 400
     
-  
-    # Example logic for risk score
-    # if data.get("lastName", "").lower() == 'doe':
-    #     return jsonify({"RiskScore": "9.1", "Description": "NO FRAUD DETECTED"})
-    # elif "fraud" in data.get("lastName", "").lower():
-    #     return jsonify({"RiskScore": "2.5", "Description": "FRAUD DETECTED"})
-    # else:
-    #     return jsonify({"RiskScore": "5.3", "Description": "CANNOT MATCH TO FRAUD DATABASE"})
     
     last_name = data.get("app", {}).get("creditInfo", {}).get("lastName", "")
 
@@ -82,4 +86,4 @@ def getFraudRisk():
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0', port=5004)
-    app.run(host=host, port=port, debug=True)
+    app.run(host=HOST, port=fraudrisk_port, debug=True)

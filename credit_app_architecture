@@ -1,0 +1,38 @@
+digraph CreditAppArchitecture {
+	UI [label="User / Frontend UI"]
+	MAIN [label="Main App (Flask)
+Port 5005"]
+	SIGNIN [label="Sign-In Service
+Port 5001"]
+	CUST [label="Customer Info Service
+Port 5002"]
+	CREDIT [label="CreditScan Service
+Port 5003"]
+	FRAUD [label="FraudRisk Service
+Port 5004"]
+	APPID [label="AppID Service
+Port 5009"]
+	DB [label="JSON Database
+credit_applications_db.json"]
+	AUTH [label="API Key Security Layer
+(auth.py / X-API-Key)"]
+	TLS [label="Optional HTTPS/TLS Layer"]
+	UI -> MAIN
+	MAIN -> SIGNIN
+	MAIN -> CUST
+	MAIN -> CREDIT
+	MAIN -> FRAUD
+	CREDIT -> APPID
+	MAIN -> DB
+	AUTH -> SIGNIN [style=dashed]
+	AUTH -> CUST [style=dashed]
+	AUTH -> CREDIT [style=dashed]
+	AUTH -> FRAUD [style=dashed]
+	AUTH -> APPID [style=dashed]
+	TLS -> MAIN [style=dotted]
+	TLS -> SIGNIN [style=dotted]
+	TLS -> CUST [style=dotted]
+	TLS -> CREDIT [style=dotted]
+	TLS -> FRAUD [style=dotted]
+	TLS -> APPID [style=dotted]
+}

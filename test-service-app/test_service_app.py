@@ -8,16 +8,6 @@ import datetime
 
 
 app = Flask(__name__, static_folder='public')
-# host = 'localhost'
-# cardapp_port = 5005
-# creditscan_port = 5003
-# fraudrisk_port = 5004
-# Build path to ../config.env
-# base_dir = os.path.dirname(os.path.abspath(__file__))
-# env_path = os.path.join(base_dir, 'config.env')
-# load_dotenv(dotenv_path=env_path)
-# import config.settings as settings
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import settings
 HOST = settings.CONFIG["HOST"]

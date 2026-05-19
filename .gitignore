@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Test and coverage
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets and configs
+config.env
+*.secret
+*.key
+*.pem
+
+# Database and data files
+*.db
+*.sqlite3
+*.json
+!test-service-appid/appid_db.json
+!test-service-app/creditapp_response_schema.json
+!test-service-app/Example_AppCredit_Response.json
+!test-service-creditscan/creditscan_DecisionEngine_db.json
+!test-service-creditscan/creditscan_request_schema.json
+!test-service-custinfo/custinfo_db.json
+!test-service-fraudrisk/fraudrisk_request_schema.json
+
+# Ignore node modules
+node_modules/
+
+# Ignore build outputs
+dist/
+build/
